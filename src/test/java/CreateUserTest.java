@@ -17,7 +17,6 @@ public class CreateUserTest {
     CreateUser createUserWithoutEmail = new CreateUser("", passwordFaker, userNameFaker);
     CreateUser createUserWithoutPassword = new CreateUser(emailFaker, "", userNameFaker);
     CreateUser createUserWithoutUserName = new CreateUser(emailFaker, passwordFaker, "");
-    User user = new User(emailFaker, passwordFaker);
 
     @Before
     public void setUp() {
@@ -129,8 +128,6 @@ public class CreateUserTest {
     given()
             .auth().oauth2(accessTokenBearer.getAccessToken().substring(7))
             .header("Content-type", "application/json")
-            .log().body()
-            .body(user)
             .when()
             .delete("/api/auth/user")
             .then()

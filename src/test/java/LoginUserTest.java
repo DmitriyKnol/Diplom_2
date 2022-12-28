@@ -146,8 +146,6 @@ public class LoginUserTest {
             given()
                     .auth().oauth2(accessTokenBearer.getAccessToken().substring(7))
                     .header("Content-type", "application/json")
-                    .log().body()
-                    .body(user)
                     .when()
                     .delete("/api/auth/user")
                     .then()
