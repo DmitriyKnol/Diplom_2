@@ -1,5 +1,4 @@
 import com.github.javafaker.Faker;
-import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import org.junit.After;
@@ -18,7 +17,7 @@ public class CreateUserTest {
     CreateUser createUserWithoutEmail = new CreateUser("", passwordFaker, userNameFaker);
     CreateUser createUserWithoutPassword = new CreateUser(emailFaker, "", userNameFaker);
     CreateUser createUserWithoutUserName = new CreateUser(emailFaker, passwordFaker, "");
-    DeleteUser deleteUser = new DeleteUser(emailFaker, passwordFaker);
+    User user = new User(emailFaker, passwordFaker);
 
     @Before
     public void setUp() {
@@ -27,7 +26,6 @@ public class CreateUserTest {
 
     @Test
     @DisplayName("Проверка возможности создать нового пользователя")
-    @Description("Проверяет позитивную попытку создать пользователя")
     public void successfulRegistrationNewUser() {
         accessTokenBearer = given()
                 .header("Content-type", "application/json")
@@ -45,8 +43,7 @@ public class CreateUserTest {
     }
 
     @Test
-    @DisplayName("Проверка возможности создать нового пользователя")
-    @Description("Проверяет попытку создать пользователя с повторяющимся именем")
+    @DisplayName("Попытка создать пользователя с повторяющимся именем")
     public void registrationDuplicateUser() {
         accessTokenBearer = given()
                 .header("Content-type", "application/json")
@@ -73,8 +70,7 @@ public class CreateUserTest {
     }
 
     @Test
-    @DisplayName("Проверка возможности создать нового пользователя")
-    @Description("Проверяет возможность создания пользователя без заполненного email")
+    @DisplayName("Попытка создания пользователя без заполненного email")
     public void registrationUserWithoutEmail() {
         accessTokenBearer = given()
                 .header("Content-type", "application/json")
@@ -92,8 +88,7 @@ public class CreateUserTest {
     }
 
     @Test
-    @DisplayName("Проверка возможности создать нового пользователя")
-    @Description("Проверяет возможность создания пользователя без заполненного пароля")
+    @DisplayName("Попытка создания пользователя без заполненного Password")
     public void registrationUserWithoutPassword() {
         accessTokenBearer = given()
                 .header("Content-type", "application/json")
@@ -111,8 +106,7 @@ public class CreateUserTest {
     }
 
     @Test
-    @DisplayName("Проверка возможности создать нового пользователя")
-    @Description("Проверяет возможность создания пользователя без заполненного имени пользователя")
+    @DisplayName("Попытка создания пользователя без заполненного имени пользователя")
     public void registrationUserWithoutUserName() {
         accessTokenBearer = given()
                 .header("Content-type", "application/json")
@@ -133,10 +127,10 @@ public class CreateUserTest {
     public void deleteUser() {
     if (accessTokenBearer.getAccessToken() != null) {
     given()
-            .auth().oauth2(accessTokenBearer.getAccessToken().substring(7, accessTokenBearer.getAccessToken().length()))
+            .auth().oauth2(accessTokenBearer.getAccessToken().substring(7))
             .header("Content-type", "application/json")
             .log().body()
-            .body(deleteUser)
+            .body(user)
             .when()
             .delete("/api/auth/user")
             .then()

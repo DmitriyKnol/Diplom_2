@@ -1,14 +1,14 @@
-public class DeleteUser {
+public class User {
         private String email;
         private String password;
 
-        public DeleteUser(String email, String password) {
+        public User(String email, String password) {
             this.email = email;
             this.password = password;
 
         }
 
-        public DeleteUser() {
+        public User() {
         }
 
         public String getEmail() {
