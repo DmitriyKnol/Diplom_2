@@ -1,3 +1,5 @@
+package main.pojo;
+
 public class User {
         private String email;
         private String password;

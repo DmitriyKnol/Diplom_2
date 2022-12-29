@@ -1,6 +1,8 @@
 import com.github.javafaker.Faker;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
+import main.pojo.AccessTokenBearer;
+import main.pojo.CreateUser;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

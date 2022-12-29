@@ -1,3 +1,5 @@
+package main.pojo;
+
 public class AccessTokenBearer {
     private String accessToken;
 

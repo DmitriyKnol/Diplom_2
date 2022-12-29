@@ -1,3 +1,5 @@
+package main.pojo;
+
 public class CreateUser {
 
         private String email;
