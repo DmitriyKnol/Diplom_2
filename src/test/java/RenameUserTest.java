@@ -19,6 +19,7 @@ public class RenameUserTest {
     private final String userNameFaker = faker.name().firstName();
     private final String newEmail = faker.internet().emailAddress();
     private final String newName = faker.name().firstName();
+    private static final  String handlerUser = "/api/auth/user";
     CreateUser createUser = new CreateUser(emailFaker, passwordFaker, userNameFaker);
 
     @Before
@@ -45,7 +46,7 @@ public class RenameUserTest {
                 .log().body()
                 .body("{\"name\": \"" + newEmail + "\"}")
                 .when()
-                .patch("/api/auth/user")
+                .patch(handlerUser)
                 .then()
                 .log().body()
                 .assertThat()
@@ -61,7 +62,7 @@ public class RenameUserTest {
                 .log().body()
                 .body("{\"name\": \"" + newName + "\"}")
                 .when()
-                .patch("/api/auth/user")
+                .patch(handlerUser)
                 .then()
                 .log().body()
                 .assertThat()
@@ -77,7 +78,7 @@ public class RenameUserTest {
                 .log().body()
                 .body("{\"email\": \"" + newEmail + "\", \"name\": \"" + newName + "\"}")
                 .when()
-                .patch("/api/auth/user")
+                .patch(handlerUser)
                 .then()
                 .log().body()
                 .assertThat()
@@ -93,7 +94,7 @@ public class RenameUserTest {
                 .log().body()
                 .body("{\"name\": \"" + newEmail + "\"}")
                 .when()
-                .patch("/api/auth/user")
+                .patch(handlerUser)
                 .then()
                 .log().body()
                 .assertThat()
@@ -108,7 +109,7 @@ public class RenameUserTest {
                 .log().body()
                 .body("{\"name\": \"" + newName + "\"}")
                 .when()
-                .patch("/api/auth/user")
+                .patch(handlerUser)
                 .then()
                 .log().body()
                 .assertThat()
@@ -123,7 +124,7 @@ public class RenameUserTest {
                 .log().body()
                 .body("{\"email\": \"" + newEmail + "\", \"name\": \"" + newName + "\"}")
                 .when()
-                .patch("/api/auth/user")
+                .patch(handlerUser)
                 .then()
                 .log().body()
                 .assertThat()
@@ -138,7 +139,7 @@ public class RenameUserTest {
                     .auth().oauth2(accessTokenBearer.getAccessToken().substring(7))
                     .header("Content-type", "application/json")
                     .when()
-                    .delete("/api/auth/user")
+                    .delete(handlerUser)
                     .then()
                     .log().body();
         }

@@ -16,6 +16,7 @@ public class GetOrderUserTest {
     private final String emailFaker = faker.internet().emailAddress();
     private final String passwordFaker = faker.internet().password(6,10);
     private final String userNameFaker = faker.name().firstName();
+    private static final String handlerGetOrder = "/api/orders";
 
     CreateUser createUser = new CreateUser(emailFaker, passwordFaker, userNameFaker);
 

@@ -21,6 +21,7 @@ public class CreateOrderTest {
     Ingredients ingredients = new Ingredients(List.of("nononohash", "nohashtoo"));
     Ingredients ingredientsValid;
     Faker faker = new Faker();
+    private static final String handlerCreateOrder = "/api/orders";
 
 
     private final String emailFaker = faker.internet().emailAddress();
@@ -62,7 +63,7 @@ public class CreateOrderTest {
                 .log().body()
                 .body(ingredientsValid)
                 .when()
-                .post("/api/orders")
+                .post(handlerCreateOrder)
                 .then()
                 .log().body()
                 .assertThat()
@@ -76,7 +77,7 @@ public class CreateOrderTest {
                 .auth().oauth2(accessTokenBearer.getAccessToken().substring(7))
                 .header("Content-type", "application/json")
                 .when()
-                .post("/api/orders")
+                .post(handlerCreateOrder)
                 .then()
                 .log().body()
                 .assertThat()
@@ -92,7 +93,7 @@ public class CreateOrderTest {
                 .log().body()
                 .body(ingredients)
                 .when()
-                .post("/api/orders")
+                .post(handlerCreateOrder)
                 .then()
                 .log().body()
                 .assertThat()
@@ -106,7 +107,7 @@ public class CreateOrderTest {
                 .log().body()
                 .body(ingredientsValid)
                 .when()
-                .post("/api/orders")
+                .post(handlerCreateOrder)
                 .then()
                 .log().body()
                 .assertThat()
@@ -120,7 +121,7 @@ public class CreateOrderTest {
                 .auth().oauth2(accessTokenBearer.getAccessToken().substring(7))
                 .header("Content-type", "application/json")
                 .when()
-                .post("/api/orders")
+                .post(handlerCreateOrder)
                 .then()
                 .log().body()
                 .assertThat()
@@ -135,7 +136,7 @@ public class CreateOrderTest {
                 .log().body()
                 .body(ingredients)
                 .when()
-                .post("/api/orders")
+                .post(handlerCreateOrder)
                 .then()
                 .log().body()
                 .assertThat()
@@ -148,7 +149,7 @@ public class CreateOrderTest {
                     .auth().oauth2(accessTokenBearer.getAccessToken().substring(7))
                     .header("Content-type", "application/json")
                     .when()
-                    .delete("/api/auth/user")
+                    .delete(handlerCreateOrder)
                     .then()
                     .log().body();
         }

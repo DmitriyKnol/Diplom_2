@@ -25,6 +25,7 @@ public class LoginUserTest {
     User userBadPassword = new User(emailFaker, passwordFaker.substring(1));
     User userNoEmail = new User("", passwordFaker);
     User userNoPassword = new User(emailFaker, "");
+    private static final String handlerLogin = "/api/auth/login";
 
 
     @Before
@@ -50,7 +51,7 @@ public class LoginUserTest {
             .log().body()
             .body(user)
             .when()
-            .post("/api/auth/login")
+            .post(handlerLogin)
             .then()
             .log().body()
             .assertThat()
@@ -67,7 +68,7 @@ public class LoginUserTest {
                 .log().body()
                 .body(userBadEmail)
                 .when()
-                .post("/api/auth/login");
+                .post(handlerLogin);
 
         tokenBearer = response.then().extract().body().as(AccessTokenBearer.class);
         if (tokenBearer.getAccessToken() != null) {
@@ -88,7 +89,7 @@ public class LoginUserTest {
                 .log().body()
                 .body(userBadPassword)
                 .when()
-                .post("/api/auth/login");
+                .post(handlerLogin);
 
         tokenBearer = response.then().extract().body().as(AccessTokenBearer.class);
         if (tokenBearer.getAccessToken() != null) {
@@ -109,7 +110,7 @@ public class LoginUserTest {
                 .log().body()
                 .body(userNoEmail)
                 .when()
-                .post("/api/auth/login");
+                .post(handlerLogin);
 
         tokenBearer = response.then().extract().body().as(AccessTokenBearer.class);
         if (tokenBearer.getAccessToken() != null) {
@@ -130,7 +131,7 @@ public class LoginUserTest {
                 .log().body()
                 .body(userNoPassword)
                 .when()
-                .post("/api/auth/login");
+                .post(handlerLogin);
 
         tokenBearer = response.then().extract().body().as(AccessTokenBearer.class);
         if (tokenBearer.getAccessToken() != null) {

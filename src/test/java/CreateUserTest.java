@@ -15,6 +15,7 @@ public class CreateUserTest {
     private final String emailFaker = faker.internet().emailAddress();
     private final String passwordFaker = faker.internet().password(6,10);
     private final String userNameFaker = faker.name().firstName();
+    private static final String handlerRegister = "/api/auth/register";
     CreateUser createUser = new CreateUser(emailFaker, passwordFaker, userNameFaker);
     CreateUser createUserWithoutEmail = new CreateUser("", passwordFaker, userNameFaker);
     CreateUser createUserWithoutPassword = new CreateUser(emailFaker, "", userNameFaker);
@@ -33,7 +34,7 @@ public class CreateUserTest {
                 .log().body()
                 .body(createUser)
                 .when()
-                .post("/api/auth/register")
+                .post(handlerRegister)
                 .then()
                 .log().body()
                 .assertThat()
@@ -51,7 +52,7 @@ public class CreateUserTest {
                 .log().body()
                 .body(createUser)
                 .when()
-                .post("/api/auth/register")
+                .post(handlerRegister)
                 .then()
                 .log().body()
                 .extract().body().as(AccessTokenBearer.class);
@@ -61,7 +62,7 @@ public class CreateUserTest {
                 .log().body()
                 .body(createUser)
                 .when()
-                .post("/api/auth/register")
+                .post(handlerRegister)
                 .then()
                 .log().body()
                 .assertThat()
@@ -78,7 +79,7 @@ public class CreateUserTest {
                 .log().body()
                 .body(createUserWithoutEmail)
                 .when()
-                .post("/api/auth/register")
+                .post(handlerRegister)
                 .then()
                 .log().body()
                 .assertThat()
@@ -96,7 +97,7 @@ public class CreateUserTest {
                 .log().body()
                 .body(createUserWithoutPassword)
                 .when()
-                .post("/api/auth/register")
+                .post(handlerRegister)
                 .then()
                 .log().body()
                 .assertThat()
@@ -114,7 +115,7 @@ public class CreateUserTest {
                 .log().body()
                 .body(createUserWithoutUserName)
                 .when()
-                .post("/api/auth/register")
+                .post(handlerRegister)
                 .then()
                 .log().body()
                 .assertThat()
