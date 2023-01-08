@@ -13,7 +13,7 @@ import java.util.List;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
-
+import static org.apache.http.HttpStatus.*;
 public class CreateOrderTest {
     String ingredient1;
     String ingredient2;
@@ -67,7 +67,7 @@ public class CreateOrderTest {
                 .then()
                 .log().body()
                 .assertThat()
-                .statusCode(200)
+                .statusCode(SC_OK)
                 .body("success", is(true));
     }
     @Test
@@ -81,7 +81,7 @@ public class CreateOrderTest {
                 .then()
                 .log().body()
                 .assertThat()
-                .statusCode(400)
+                .statusCode(SC_BAD_REQUEST)
                 .body("success", is(false));
     }
     @Test
@@ -97,7 +97,7 @@ public class CreateOrderTest {
                 .then()
                 .log().body()
                 .assertThat()
-                .statusCode(500);
+                .statusCode(SC_INTERNAL_SERVER_ERROR);
     }
     @Test
     @DisplayName("Создание заказа неавторизованного пользователя")
@@ -111,7 +111,7 @@ public class CreateOrderTest {
                 .then()
                 .log().body()
                 .assertThat()
-                .statusCode(200)
+                .statusCode(SC_OK)
                 .body("success", is(true));
     }
     @Test
@@ -125,7 +125,7 @@ public class CreateOrderTest {
                 .then()
                 .log().body()
                 .assertThat()
-                .statusCode(400)
+                .statusCode(SC_BAD_REQUEST)
                 .body("success", is(false));
     }
     @Test
@@ -140,7 +140,7 @@ public class CreateOrderTest {
                 .then()
                 .log().body()
                 .assertThat()
-                .statusCode(500);
+                .statusCode(SC_INTERNAL_SERVER_ERROR);
     }
     @After
     public void deleteUser() {

@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
+import static org.apache.http.HttpStatus.*;
 
 public class CreateUserTest {
     AccessTokenBearer accessTokenBearer;
@@ -38,7 +39,7 @@ public class CreateUserTest {
                 .then()
                 .log().body()
                 .assertThat()
-                .statusCode(200)
+                .statusCode(SC_OK)
                 .body("success", is(true))
                 .extract().body().as(AccessTokenBearer.class);
 
@@ -66,7 +67,7 @@ public class CreateUserTest {
                 .then()
                 .log().body()
                 .assertThat()
-                .statusCode(403)
+                .statusCode(SC_FORBIDDEN)
                 .body("success", is(false));
 
     }
@@ -83,7 +84,7 @@ public class CreateUserTest {
                 .then()
                 .log().body()
                 .assertThat()
-                .statusCode(403)
+                .statusCode(SC_FORBIDDEN)
                 .body("success", is(false))
                 .extract().body().as(AccessTokenBearer.class);
 
@@ -101,7 +102,7 @@ public class CreateUserTest {
                 .then()
                 .log().body()
                 .assertThat()
-                .statusCode(403)
+                .statusCode(SC_FORBIDDEN)
                 .body("success", is(false))
                 .extract().body().as(AccessTokenBearer.class);
 
@@ -119,7 +120,7 @@ public class CreateUserTest {
                 .then()
                 .log().body()
                 .assertThat()
-                .statusCode(403)
+                .statusCode(SC_FORBIDDEN)
                 .body("success", is(false))
                 .extract().body().as(AccessTokenBearer.class);
 

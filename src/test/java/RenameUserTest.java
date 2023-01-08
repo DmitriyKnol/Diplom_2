@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
+import static org.apache.http.HttpStatus.*;
 
 public class RenameUserTest {
     AccessTokenBearer accessTokenBearer;
@@ -50,7 +51,7 @@ public class RenameUserTest {
                 .then()
                 .log().body()
                 .assertThat()
-                .statusCode(200)
+                .statusCode(SC_OK)
                 .body("success", is(true));
     }
     @Test
@@ -66,7 +67,7 @@ public class RenameUserTest {
                 .then()
                 .log().body()
                 .assertThat()
-                .statusCode(200)
+                .statusCode(SC_OK)
                 .body("success", is(true));
     }
     @Test
@@ -82,7 +83,7 @@ public class RenameUserTest {
                 .then()
                 .log().body()
                 .assertThat()
-                .statusCode(200)
+                .statusCode(SC_OK)
                 .body("success", is(true));
     }
 
@@ -98,7 +99,7 @@ public class RenameUserTest {
                 .then()
                 .log().body()
                 .assertThat()
-                .statusCode(401)
+                .statusCode(SC_UNAUTHORIZED)
                 .body("success", is(false));
     }
     @Test
@@ -113,7 +114,7 @@ public class RenameUserTest {
                 .then()
                 .log().body()
                 .assertThat()
-                .statusCode(401)
+                .statusCode(SC_UNAUTHORIZED)
                 .body("success", is(false));
     }
     @Test
@@ -128,7 +129,7 @@ public class RenameUserTest {
                 .then()
                 .log().body()
                 .assertThat()
-                .statusCode(401)
+                .statusCode(SC_UNAUTHORIZED)
                 .body("success", is(false));
     }
 

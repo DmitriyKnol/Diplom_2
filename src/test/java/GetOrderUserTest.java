@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
+import static org.apache.http.HttpStatus.*;
 
 public class GetOrderUserTest {
     AccessTokenBearer accessTokenBearer;
@@ -41,11 +42,11 @@ public class GetOrderUserTest {
                 .auth().oauth2(accessTokenBearer.getAccessToken().substring(7))
                 .header("Content-type", "application/json")
                 .when()
-                .get("/api/orders")
+                .get(handlerGetOrder)
                 .then()
                 .log().body()
                 .assertThat()
-                .statusCode(200)
+                .statusCode(SC_OK)
                 .body("success", is(true));
     }
 
@@ -55,11 +56,11 @@ public class GetOrderUserTest {
         given()
                 .header("Content-type", "application/json")
                 .when()
-                .get("/api/orders")
+                .get(handlerGetOrder)
                 .then()
                 .log().body()
                 .assertThat()
-                .statusCode(401)
+                .statusCode(SC_UNAUTHORIZED)
                 .body("success", is(false));
     }
     @After

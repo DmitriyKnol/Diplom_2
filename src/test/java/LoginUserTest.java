@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
+import static org.apache.http.HttpStatus.*;
 
 public class LoginUserTest {
     AccessTokenBearer accessTokenBearer;
@@ -55,7 +56,7 @@ public class LoginUserTest {
             .then()
             .log().body()
             .assertThat()
-            .statusCode(200)
+            .statusCode(SC_OK)
             .body("success", is(true))
             .extract().body().as(AccessTokenBearer.class);
 }
@@ -77,7 +78,7 @@ public class LoginUserTest {
         response.then()
                 .log().body()
                 .assertThat()
-                .statusCode(401)
+                .statusCode(SC_UNAUTHORIZED)
                 .body("success", is(false));
     }
     @Test
@@ -98,7 +99,7 @@ public class LoginUserTest {
         response.then()
                 .log().body()
                 .assertThat()
-                .statusCode(401)
+                .statusCode(SC_UNAUTHORIZED)
                 .body("success", is(false));
     }
     @Test
@@ -119,7 +120,7 @@ public class LoginUserTest {
         response.then()
                 .log().body()
                 .assertThat()
-                .statusCode(401)
+                .statusCode(SC_UNAUTHORIZED)
                 .body("success", is(false));
     }
     @Test
@@ -140,7 +141,7 @@ public class LoginUserTest {
         response.then()
                 .log().body()
                 .assertThat()
-                .statusCode(401)
+                .statusCode(SC_UNAUTHORIZED)
                 .body("success", is(false));
     }
 
