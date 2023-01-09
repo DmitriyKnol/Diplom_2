@@ -26,8 +26,6 @@ public class UserApi {
     User user = new User(emailFaker, passwordFaker);
     User userBadEmail = new User(emailFaker.substring(1), passwordFaker);
     User userBadPassword = new User(emailFaker, passwordFaker.substring(1));
-    User userNoEmail = new User("", passwordFaker);
-    User userNoPassword = new User(emailFaker, "");
 
     public String getNewEmail() {
         return newEmail;
@@ -63,14 +61,6 @@ public class UserApi {
 
     public User getUserBadPassword() {
         return userBadPassword;
-    }
-
-    public User getUserNoEmail() {
-        return userNoEmail;
-    }
-
-    public User getUserNoPassword() {
-        return userNoPassword;
     }
 
     public Response registration(CreateUser user) {
