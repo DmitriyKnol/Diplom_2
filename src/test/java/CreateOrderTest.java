@@ -8,6 +8,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import static main.UserGenerator.getCreateUser;
+
 public class CreateOrderTest extends BaseApi {
     UserApi userApi = new UserApi();
     OrderApi orderApi = new OrderApi();
@@ -16,7 +18,7 @@ public class CreateOrderTest extends BaseApi {
     @Before
     public void setUp() {
         openUri();
-        userApi.registration(userApi.getCreateUser());
+        userApi.registration(getCreateUser());
         orderApi.getIngredients();
     }
 

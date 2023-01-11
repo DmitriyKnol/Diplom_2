@@ -6,6 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import static main.UserGenerator.getCreateUser;
 import static org.hamcrest.CoreMatchers.is;
 import static org.apache.http.HttpStatus.*;
 
@@ -16,7 +17,7 @@ public class GetOrderUserTest extends BaseApi {
     @Before
     public void setUp() {
         openUri();
-        userApi.registration(userApi.getCreateUser());
+        userApi.registration(getCreateUser());
     }
 
     @Test
