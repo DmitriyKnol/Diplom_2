@@ -7,7 +7,7 @@ import java.util.List;
 
 import static io.restassured.RestAssured.given;
 
-public class OrderApi extends UserApi {
+public class OrderApi {
     private static final String handlerGetOrder = "/api/orders";
     String ingredient1;
     String ingredient2;
